@@ -9,14 +9,15 @@ import {
     Image,
     Text
   } from "react-native";
-  import { LinearGradient } from 'expo-linear-gradient';
+import { LinearGradient } from 'expo-linear-gradient';
+import ElevatedView from 'react-native-elevated-view'
 
 
 import MainText from "../components/UI/MainText";
 import HeadingText from "../components/UI/HeadingText";
 import DefaultInput from '../components/UI/DefaultInput';
 import ButtonWithBackground from "../components/UI/ButtonWithBackground";
-
+  
 export default class Auth extends Component {
     state = {
         marginAvoid: 50,
@@ -58,10 +59,15 @@ export default class Auth extends Component {
                             <HeadingText style={styles.forgotPassText}>Sign In</HeadingText>
                         </MainText>
                         <View style={styles.imageContainer}>
-                            <Image 
-                                source={require('../constants/images/safkati.png')}
-                                style={styles.logo}
-                            />
+                            <ElevatedView
+                                elevation={5}
+                                style={styles.stayElevated}
+                            >
+                                <Image 
+                                    source={require('../constants/images/safkati.png')}
+                                    style={styles.logo}
+                                />
+                            </ElevatedView>
                         </View>
                         <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
                         <View style={styles.inputContainer}>
@@ -140,20 +146,20 @@ const styles = StyleSheet.create({
         borderRadius: 100,
     },
     imageContainer: {
-        marginTop: 50,
+        marginTop: 45,
         marginBottom: 50,
-        elevation:4,
-        shadowOffset: { width: 5, height: 5 },
-        shadowColor: "grey",
-        shadowOpacity: 0.5,
-        shadowRadius: 10,
+        shadowColor: '#000',
+        shadowOffset: { width: 0, height: 2 },
+        shadowOpacity: 0.2,
+        elevation: 100,
+        position:'relative'
     },
     forgotPassText: {
         color: "#F6C552"
     },
     buttonContianer: {
         width: "80%",
-        alignItems: "center"
+        alignItems: "center",
     },
     textCenter: {
         fontWeight: "bold",
@@ -164,5 +170,12 @@ const styles = StyleSheet.create({
     },
     behavior: {
         marginTop: 100
+    },
+    stayElevated: {
+        width: -102,
+        height: 103,
+        margin: 10,
+        backgroundColor: '#000000b5',
+        borderRadius: 100,
     }
 })
