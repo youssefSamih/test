@@ -51,7 +51,7 @@ export default class Auth extends Component {
                     // colors={['rgba(238,136,17,0.2)', 'transparent']}
                     colors={['#f6c552', '#ee813c', '#bf245a']}
                     style={{width: "100%", opacity: 0.6, flex: 1}}
-                    start={[1.5, 0.6]}
+                    start={[6, 0.1]}
                 >
                     <KeyboardAvoidingView style={styles.container} behavior="height" contentContainerStyle={styles.behavior}>
                         <MainText>
@@ -148,12 +148,6 @@ const styles = StyleSheet.create({
         shadowOpacity: 0.5,
         shadowRadius: 10,
     },
-    // textStyle: {
-    //     marginTop: this.state.marginCreate //100
-    // },
-    // forgotPass:{
-    //     marginTop: this.state.marginAvoid //50
-    // },
     forgotPassText: {
         color: "#F6C552"
     },
