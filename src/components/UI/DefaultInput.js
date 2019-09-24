@@ -4,6 +4,7 @@ import { TextInput, StyleSheet } from "react-native";
 const defaultInput = props => (
   <TextInput
     underlineColorAndroid="transparent"
+    placeholderTextColor = "#fff"
     {...props}
     style={[styles.input, props.style, !props.valid && props.touched ? styles.invalid : null]}
   />
