@@ -7,10 +7,12 @@ import {
     Keyboard,
     TouchableWithoutFeedback,
     Image,
-    Text
+    Text,
+    ScrollView,
+    TouchableOpacity
   } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
-import ElevatedView from 'react-native-elevated-view'
+import ElevatedView from 'react-native-elevated-view';
 
 
 import MainText from "../components/UI/MainText";
@@ -20,8 +22,7 @@ import ButtonWithBackground from "../components/UI/ButtonWithBackground";
   
 export default class Auth extends Component {
     state = {
-        marginAvoid: 50,
-        marginCreate: 100
+        keyAvoid: false,
     }
 
     componentWillMount () {
@@ -35,13 +36,11 @@ export default class Auth extends Component {
     }
 
     _keyboardDidShow = () => {
-        this.setState({ marginAvoid: 0 });
-        this.setState({ marginCreate: 80 });
+        this.setState({ keyAvoid: true });
     }
 
     _keyboardDidHide  = () => {
-        this.setState({ marginAvoid: 50 });
-        this.setState({ marginCreate: 100 });
+        this.setState({ keyAvoid: false });
     }
 
 
@@ -54,59 +53,62 @@ export default class Auth extends Component {
                     style={{width: "100%", opacity: 0.6, flex: 1}}
                     start={[6, 0.1]}
                 >
-                    <KeyboardAvoidingView style={styles.container} behavior="height" contentContainerStyle={styles.behavior}>
-                        <MainText>
-                            <HeadingText style={styles.forgotPassText}>Sign In</HeadingText>
-                        </MainText>
-                        <View style={styles.imageContainer}>
-                            <ElevatedView
-                                elevation={5}
-                                style={styles.stayElevated}
-                            >
-                                <Image 
-                                    source={require('../constants/images/safkati.png')}
-                                    style={styles.logo}
-                                />
-                            </ElevatedView>
-                        </View>
-                        <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
-                        <View style={styles.inputContainer}>
-                            <DefaultInput
-                                placeholder="Identifiant"
-                                style={styles.input}
-                                autoCapitalize="none"
-                                autoCorrect={false}
-                                keyboardType="email-address"
-                            />
-                            <View
-                                style={styles.portraitPasswordContainer}
-                            >
-                                <View
-                                    style={styles.portraitPasswordWrapper}
+                    <ScrollView style={styles.scrollStyle} showsVerticalScrollIndicator={false}>
+                        <KeyboardAvoidingView style={styles.container} behavior="height" contentContainerStyle={styles.behavior}>
+                            <MainText>
+                                <HeadingText style={styles.forgotPassText}>Sign In</HeadingText>
+                            </MainText>
+                            <View style={styles.imageContainer}>
+                                <ElevatedView
+                                    elevation={5}
+                                    style={styles.stayElevated}
                                 >
-                                    <DefaultInput
-                                        placeholder="Password"
-                                        style={styles.input}
-                                        secureTextEntry
+                                    <Image 
+                                        source={require('../constants/images/safkati.png')}
+                                        style={styles.logo}
                                     />
+                                </ElevatedView>
+                            </View>
+                            <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+                            <View style={styles.inputContainer}>
+                                <DefaultInput
+                                    placeholder="Identifiant"
+                                    style={styles.input}
+                                    autoCapitalize="none"
+                                    autoCorrect={false}
+                                    keyboardType="email-address"
+                                />
+                                <View
+                                    style={styles.portraitPasswordContainer}
+                                >
+                                    <View
+                                        style={styles.portraitPasswordWrapper}
+                                    >
+                                        <DefaultInput
+                                            placeholder="Password"
+                                            style={styles.input}
+                                            secureTextEntry
+                                        />
+                                    </View>
                                 </View>
                             </View>
-                        </View>
-                        </TouchableWithoutFeedback>
-                        <ButtonWithBackground
-                            Backcolors={['#f6c552', '#ee813c', '#bf245a']}
-                            buttonStyle={styles.buttonContianer}
-                            start={[1.5, 0.6]}
-                        >
-                            <HeadingText style={styles.textCenter}>Sign In</HeadingText>
-                        </ButtonWithBackground>
-                        <View style={{ marginTop: this.state.marginAvoid }}>
-                            <Text style={styles.forgotPassText}>Forgot your details ?</Text>
-                        </View>
-                        <MainText textStyle={{ marginTop: this.state.marginCreate }}>
-                            <HeadingText style={styles.createAccountText}>Create a new account</HeadingText>
-                        </MainText>
-                    </KeyboardAvoidingView>
+                            </TouchableWithoutFeedback>
+                            <ButtonWithBackground
+                                Backcolors={['#f6c552', '#ee813c', '#bf245a']}
+                                buttonStyle={styles.buttonContianer}
+                                start={[1.5, 0.6]}
+                                onPress={() => this.props.navigation.navigate('Project')}
+                            >
+                                <HeadingText style={styles.textCenter}>Sign In</HeadingText>
+                            </ButtonWithBackground>
+                            <TouchableOpacity style={{ marginTop: this.state.keyAvoid ? 0 : 50 }}>
+                                <Text style={styles.forgotPassText}>Forgot your details ?</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={{ marginTop: this.state.keyAvoid ? 80 : 100, marginBottom: 30 }}>
+                                <HeadingText style={styles.createAccountText}>Create a new account</HeadingText>
+                            </TouchableOpacity>
+                        </KeyboardAvoidingView>
+                    </ScrollView>
                 </LinearGradient>
             </ImageBackground>
         )
@@ -146,7 +148,7 @@ const styles = StyleSheet.create({
         borderRadius: 100,
     },
     imageContainer: {
-        marginTop: 45,
+        marginTop: 50,
         marginBottom: 50,
         shadowColor: '#000',
         shadowOffset: { width: 0, height: 2 },
@@ -177,5 +179,8 @@ const styles = StyleSheet.create({
         margin: 10,
         backgroundColor: '#000000b5',
         borderRadius: 100,
+    },
+    scrollStyle: { 
+        marginTop: 20
     }
 })
