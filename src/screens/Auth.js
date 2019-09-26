@@ -46,7 +46,7 @@ export default class Auth extends Component {
 
     render() {
         return (
-            <ImageBackground source={require('../constants/images/background.jpg')} style={styles.backgroundImage}>
+            <ImageBackground source={require('../constants/images/connexion.jpg')} style={styles.backgroundImage}>
                 <LinearGradient
                     // colors={['rgba(238,136,17,0.2)', 'transparent']}
                     colors={['#f6c552', '#ee813c', '#bf245a']}

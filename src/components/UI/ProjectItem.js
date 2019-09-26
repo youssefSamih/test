@@ -1,5 +1,5 @@
 import React from 'react'
-import { StyleSheet, View, Text, Image, TouchableOpacity } from 'react-native'
+import { StyleSheet, View, Text, Image, TouchableOpacity, ImageBackground } from 'react-native'
 import FadIn from '../Animations/FadIn';
 import { LinearGradient } from 'expo-linear-gradient';
 
@@ -13,31 +13,30 @@ class ProjectItem extends React.Component {
                     style={styles.image}
                     source={{uri: project.cover }}
                 />
-                <LinearGradient
-                    colors={['#f6c552', '#ee813c', '#bf245a']}
-                    start={[1.5, 0.6]}
-                    style={styles.content_container}
-                >
-                  <View style={styles.details}>
-                    <View style={styles.header_container}>
-                        <Text style={styles.title_text}>{project.libelle.toUpperCase()}</Text>
-                        <Text style={styles.vote_text}>
-                        {
-                          project.town !== null ? project.town.toUpperCase() : project.town
-                        }
-                        </Text>
-                        <Text style={project.type_de_bien !== null ? styles.date_text : ''}>
-                          {project.type_de_bien}
-                        </Text>
+                <ImageBackground source={require('../../constants/images/listProject.png')} style={styles.backgroundImage}>
+                  <LinearGradient
+                      colors={['#f6c552', '#ee813c', '#bf245a']}
+                      start={[4, 0.6]}
+                      style={styles.content_container}
+                  >
+                    <View style={styles.details}>
+                      <View style={styles.header_container}>
+                          <Text style={styles.title_text}>{project.libelle.toUpperCase()}</Text>
+                          <Text style={styles.vote_text}>
+                          {
+                            project.town !== null ? project.town.toUpperCase() : project.town
+                          }
+                          </Text>
+                          <Text style={project.type_de_bien !== null ? styles.date_text : ''}>
+                            {project.type_de_bien}
+                          </Text>
+                      </View>
+                      <View style={styles.description_container}>
+                          <Text style={styles.description_text} numberOfLines={5}>{project.description}</Text>
+                      </View>
                     </View>
-                    <View style={styles.description_container}>
-                        <Text style={styles.description_text} numberOfLines={5}>{project.description}</Text>
-                    </View>
-                    {/* <View style={styles.date_container}>
-                        
-                    </View> */}
-                  </View>
-                </LinearGradient>
+                  </LinearGradient>
+                </ImageBackground>
           </TouchableOpacity>
         </FadIn>
     )
@@ -57,7 +56,8 @@ const styles = StyleSheet.create({
   },
   content_container: {
     flex: 1,
-    padding: 5
+    padding: 5,
+    opacity: .7
   },
   details: {
     flex: 1,
@@ -106,7 +106,11 @@ const styles = StyleSheet.create({
     width: 25,
     height: 25,
     marginRight: 5
-  }
+  },
+  backgroundImage: {
+    width: "100%",
+    flex: 1,
+  },
 })
 
 export default ProjectItem

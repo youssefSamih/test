@@ -11,8 +11,6 @@ import { Ionicons } from '@expo/vector-icons';
 import AuthScreen from './src/screens/Auth';
 import ProjectScreen from './src/screens/Project';
 
-const images = [];
-
 export default class App extends React.Component  {
   constructor (props) {
     super(props);
