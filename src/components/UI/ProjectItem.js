@@ -3,44 +3,41 @@ import { StyleSheet, View, Text, Image, TouchableOpacity, ImageBackground } from
 import FadIn from '../Animations/FadIn';
 import { LinearGradient } from 'expo-linear-gradient';
 
-class ProjectItem extends React.Component {
-  render() {
-    const { project } = this.props
+const ProjectItem = ({ project }) => {
     return (
-        <FadIn>
-            <TouchableOpacity style={styles.main_container}>
-                <Image
-                    style={styles.image}
-                    source={{uri: project.cover }}
-                />
-                <ImageBackground source={require('../../constants/images/listProject.png')} style={styles.backgroundImage}>
-                  <LinearGradient
-                      colors={['#f6c552', '#ee813c', '#bf245a']}
-                      start={[4, 0.6]}
-                      style={styles.content_container}
-                  >
-                    <View style={styles.details}>
-                      <View style={styles.header_container}>
-                          <Text style={styles.title_text}>{project.libelle.toUpperCase()}</Text>
-                          <Text style={styles.vote_text}>
-                          {
-                            project.town !== null ? project.town.toUpperCase() : project.town
-                          }
-                          </Text>
-                          <Text style={project.type_de_bien !== null ? styles.date_text : ''}>
-                            {project.type_de_bien}
-                          </Text>
-                      </View>
-                      <View style={styles.description_container}>
-                          <Text style={styles.description_text} numberOfLines={5}>{project.description}</Text>
-                      </View>
+      <FadIn>
+          <TouchableOpacity style={styles.main_container}>
+              <Image
+                  style={styles.image}
+                  source={{uri: project.cover }}
+              />
+              <ImageBackground source={require('../../constants/images/listProject.png')} style={styles.backgroundImage}>
+                <LinearGradient
+                    colors={['#f6c552', '#ee813c', '#bf245a']}
+                    start={[4, 0.6]}
+                    style={styles.content_container}
+                >
+                  <View style={styles.details}>
+                    <View style={styles.header_container}>
+                        <Text style={styles.title_text}>{project.libelle.toUpperCase()}</Text>
+                        <Text style={styles.townText}>
+                        {
+                          project.town !== null ? project.town.toUpperCase() : project.town
+                        }
+                        </Text>
+                        <Text style={project.type_de_bien !== null ? styles.typeText : ''}>
+                          {project.type_de_bien}
+                        </Text>
                     </View>
-                  </LinearGradient>
-                </ImageBackground>
-          </TouchableOpacity>
-        </FadIn>
+                    <View style={styles.description_container}>
+                        <Text style={styles.description_text} numberOfLines={5}>{project.description}</Text>
+                    </View>
+                  </View>
+                </LinearGradient>
+              </ImageBackground>
+        </TouchableOpacity>
+      </FadIn>
     )
-  }
 }
 
 const styles = StyleSheet.create({
@@ -75,7 +72,7 @@ const styles = StyleSheet.create({
     paddingRight: 5,
     color: "#f6c552"
   },
-  vote_text: {
+  townText: {
       fontWeight: '100',
       fontSize: 15,
       color: "#f6c552"
@@ -93,7 +90,7 @@ const styles = StyleSheet.create({
   date_container: {
       flex: 1
   },
-  date_text: {
+  typeText: {
       fontSize: 14,
       backgroundColor: "#f6c552",
       width: "70%",

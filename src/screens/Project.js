@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
 import { Text, StyleSheet, View, FlatList, ActivityIndicator } from 'react-native'
-import { Slider } from 'react-native-elements';
+
 import HeaderNative from '../components/UI/Header';
 import ProjectItem from '../components/UI/ProjectItem';
+// import HeaderSearch from '../components/headerSearch/headerSearch';
 
 export default class Project extends Component {
     state = {
@@ -60,6 +61,9 @@ export default class Project extends Component {
             // </View>
             <View style={styles.container}>
                 <HeaderNative />
+                {/* <View style={{ height: 200 }}>
+                    <HeaderSearch />
+                </View> */}
                 <FlatList
                     style={styles.list}
                     data={this.state.data}
