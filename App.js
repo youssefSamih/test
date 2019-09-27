@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { StyleSheet, StatusBar } from 'react-native';
 import { createAppContainer } from "react-navigation";
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
@@ -52,7 +52,10 @@ export default class App extends React.Component  {
         )
     }
     return (
-      <MainNavigator />
+      <>
+        <StatusBar hidden />
+        <MainNavigator />
+      </>
     );
   }
 }

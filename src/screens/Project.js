@@ -3,15 +3,28 @@ import { Text, StyleSheet, View, FlatList, ActivityIndicator } from 'react-nativ
 
 import HeaderNative from '../components/UI/Header';
 import ProjectItem from '../components/UI/ProjectItem';
-// import HeaderSearch from '../components/headerSearch/headerSearch';
+import HeaderSearch from '../components/headerSearch/headerSearch';
+import FadIn from '../components/Animations/FadIn';
 
 export default class Project extends Component {
     state = {
         value : null,
         isLoading: false,
-        data: []
+        data: [],
+        toogleHeaderSearch: false,
+        filter: {
+            address: null,
+            libelle: null,
+            bien: null,
+            type_de_bien: null,
+            piece: null,
+            prix_min: 0
+        }
     }
-    
+
+    componentDidMount(){
+        this.getProjectsFromApi();
+    }
 
     static navigationOptions = {
         tabBarVisible: false
@@ -26,22 +39,41 @@ export default class Project extends Component {
             })
           .catch((error) => console.error(error))
     }
-
-    componentDidMount(){
-        this.getProjectsFromApi();
+    
+    _handleChange = (value, type) => {
+        this.setState(prevState => {
+            return {
+                ...prevState,
+                filter: {
+                    ...prevState.filter,
+                    [type]: value
+                }
+            }
+        })
     }
 
-    // loadProject(){
-    //     this.setState({ isLoading: true })
-    //     getProjectFromApi(this.page+1).then(data => {
-    //         this.page = data.page
-    //         this.totalPages = data.total_pages
-    //         this.setState({
-    //             films: [ ...this.state.films, ...data.results ],
-    //             isLoading: false
-    //         })
-    //     })
-    // }
+    _toggleHeaderSearch = () => {
+        this.setState(prevState => {
+            return {
+                ...prevState,
+                toogleHeaderSearch: !this.state.toogleHeaderSearch
+            }
+        })
+    }
+
+    _showSearchHeader = () =>{
+        return (
+            <FadIn>
+                <View style={{ height: 260 }}>
+                    <HeaderSearch
+                        choice={this.state.data}
+                        onValueChange={this._handleChange}
+                        filter={this.state.filter}
+                    />
+                </View>
+            </FadIn>
+        )
+    }
     
     render() {
         if(!this.state.data.length > 0 ){
@@ -52,18 +84,11 @@ export default class Project extends Component {
             )
         }
         return (
-            // <View style={{ flex: 1, alignItems: 'stretch', justifyContent: 'center' }}>
-            //     <Slider
-            //         value={this.state.value}
-            //         onValueChange={value => this.setState({ value })}
-            //     />
-            //     <Text>Value: {this.state.value}</Text>
-            // </View>
             <View style={styles.container}>
-                <HeaderNative />
-                {/* <View style={{ height: 200 }}>
-                    <HeaderSearch />
-                </View> */}
+                <HeaderNative
+                    toggleHeaderSearch={this._toggleHeaderSearch}
+                />
+                { this.state.toogleHeaderSearch ? this._showSearchHeader() : <View/>}
                 <FlatList
                     style={styles.list}
                     data={this.state.data}
@@ -87,8 +112,7 @@ export default class Project extends Component {
 
 const styles = StyleSheet.create({
     container: { 
-        flex: 1, 
-        marginTop: 24, 
+        flex: 1,
         justifyContent: 'center' 
     },
     list: {
