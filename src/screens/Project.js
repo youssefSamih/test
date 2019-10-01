@@ -61,7 +61,7 @@ export default class Project extends Component {
         })
     }
 
-    _showSearchHeader = () =>{
+    _showSearchHeader = () => {
         return (
             <FadIn>
                 <View style={{ height: 260 }}>

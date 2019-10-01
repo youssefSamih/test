@@ -75,7 +75,7 @@ const headerSearch = ({ choice, onValueChange, filter,  }) => {
                         thumbStyle={{ backgroundColor: "#bf245a" }}
                         minimumTrackTintColor="#bf245a"
                     />
-                    <View style={{ flexDirection: "row", justifyContent: "space-between" }}>
+                    <View style={styles.budgetStyle}>
                         <Text style={{ color: "#ee813c", fontWeight: "bold"}}>0 Dhs</Text>
                         <Text style={{ marginTop: -7, color: "#ee813c", fontWeight: "bold" }}>{
                             filter.prix_min >= 100000 ? "10 M" : filter.prix_min
@@ -120,6 +120,10 @@ const styles = StyleSheet.create({
     labelStyle: { 
         paddingLeft: 10, 
         color: "gray" 
+    },
+    budgetStyle: { 
+        flexDirection: "row", 
+        justifyContent: "space-between" 
     }
 })
 

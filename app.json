@@ -27,6 +27,13 @@
       "supportsTablet": true
     },
     "description": "test",
-    "githubUrl": "https://github.com/youssefSamih/test"
+    "githubUrl": "https://github.com/youssefSamih/test",
+    "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyD-gUYF5VBNlDBS9LInbH6dVs3OZkBEjxA"
+        }
+      }
+    }
   }
 }

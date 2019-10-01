@@ -10,6 +10,7 @@ import { Ionicons } from '@expo/vector-icons';
 
 import AuthScreen from './src/screens/Auth';
 import ProjectScreen from './src/screens/Project';
+import ProjectHome from './src/screens/ProjectHome';
 
 export default class App extends React.Component  {
   constructor (props) {
@@ -34,6 +35,7 @@ export default class App extends React.Component  {
         auth : { screen: AuthScreen },
         main : { 
           screen: createStackNavigator({
+            projecthome: { screen: ProjectHome },
             Project: { screen: ProjectScreen }
           },{
             headerMode: "none"

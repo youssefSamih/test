@@ -97,7 +97,7 @@ export default class Auth extends Component {
                                 Backcolors={['#f6c552', '#ee813c', '#bf245a']}
                                 buttonStyle={styles.buttonContianer}
                                 start={[1.5, 0.6]}
-                                onPress={() => this.props.navigation.navigate('Project')}
+                                onPress={() => this.props.navigation.navigate('projecthome')}
                             >
                                 <HeadingText style={styles.textCenter}>Sign In</HeadingText>
                             </ButtonWithBackground>
