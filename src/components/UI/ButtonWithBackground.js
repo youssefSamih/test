@@ -34,7 +34,7 @@ const buttonWithBackground = props => {
       </TouchableNativeFeedback>
     );
   }
-  return <TouchableOpacity onPress={props.onPress}>{content}</TouchableOpacity>;
+  return <TouchableOpacity style={styles.shadowIos} onPress={props.onPress}>{content}</TouchableOpacity>;
 };
 
 const styles = StyleSheet.create({
@@ -49,6 +49,12 @@ const styles = StyleSheet.create({
   },
   disabledText: {
     color: "#aaa"
+  },
+  shadowIos:{
+    shadowColor: 'rgba(0,0,0, .4)', // IOS
+    shadowOffset: { height: 1, width: 1 }, // IOS
+    shadowOpacity: 2, // IOS
+    shadowRadius: 5, //IOS
   }
 });
 

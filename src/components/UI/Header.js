@@ -17,15 +17,15 @@ const HeaderNative = ({ toggleHeaderSearch }) => {
             >
                     <Left style={{ flex: 1 }}>
                         <Button transparent>
-                            <Icon name='menu' />
+                            <Icon name='menu' style={styles.iosColor} />
                         </Button>
                     </Left>
                     <Body style={{ flex: 0, alignItems: "flex-end" }}>
-                        <Title>Projets</Title>
+                        <Title style={styles.iosColor}>Projets</Title>
                     </Body>
                     <Right style={{ flex: 1 }}>
                         <Button onPress={() => toggleHeaderSearch()} transparent>
-                            <Icon name='ios-search' />
+                            <Icon name='ios-search' style={styles.iosColor} />
                         </Button>
                     </Right>
             </Header>
@@ -33,6 +33,8 @@ const HeaderNative = ({ toggleHeaderSearch }) => {
     )
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+    iosColor: { color: "#fff" }
+})
 
 export default HeaderNative

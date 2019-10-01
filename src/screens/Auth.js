@@ -9,7 +9,9 @@ import {
     Image,
     Text,
     ScrollView,
-    TouchableOpacity
+    TouchableOpacity,
+    Platform,
+    Dimensions
   } from "react-native";
 import { LinearGradient } from 'expo-linear-gradient';
 import ElevatedView from 'react-native-elevated-view';
@@ -93,14 +95,18 @@ export default class Auth extends Component {
                                 </View>
                             </View>
                             </TouchableWithoutFeedback>
-                            <ButtonWithBackground
-                                Backcolors={['#f6c552', '#ee813c', '#bf245a']}
-                                buttonStyle={styles.buttonContianer}
-                                start={[1.5, 0.6]}
-                                onPress={() => this.props.navigation.navigate('projecthome')}
-                            >
-                                <HeadingText style={styles.textCenter}>Sign In</HeadingText>
-                            </ButtonWithBackground>
+                            {/* <ElevatedView
+                                style={{ backgroundColor: '#000000b5', opacity: .8, borderRadius: 10 }}
+                            >     */}
+                                <ButtonWithBackground
+                                    Backcolors={['#f6c552', '#ee813c', '#bf245a']}
+                                    buttonStyle={styles.buttonContianer}
+                                    start={[1.5, 0.6]}
+                                    onPress={() => this.props.navigation.navigate('projecthome')}
+                                >
+                                    <HeadingText style={styles.textCenter}>Sign In</HeadingText>
+                                </ButtonWithBackground>
+                            {/* </ElevatedView> */}
                             <TouchableOpacity style={{ marginTop: this.state.keyAvoid ? 0 : 50 }}>
                                 <Text style={styles.forgotPassText}>Forgot your details ?</Text>
                             </TouchableOpacity>
@@ -145,7 +151,7 @@ const styles = StyleSheet.create({
     logo: {
         width: 100,
         height: 100,
-        borderRadius: 100,
+        borderRadius: Platform.OS === "android" ? 100 : 50,
     },
     imageContainer: {
         marginTop: 50,
@@ -160,7 +166,7 @@ const styles = StyleSheet.create({
         color: "#F6C552"
     },
     buttonContianer: {
-        width: "80%",
+        width: Dimensions.get('window').width / 1.3 ,
         alignItems: "center",
     },
     textCenter: {
